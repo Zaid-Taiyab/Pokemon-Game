@@ -1,1 +1,44 @@
+# Compiler settings
+CC = g++
+BASE_CFLAGS = -Wall -Werror -g -std=c++17 -Wno-unused-variable
+CFLAGS += $(BASE_CFLAGS)
 
+# Object files variable that contains a list of 
+# the object files that will be built
+# add the required .o files below and delete blah.o
+OBJS = pokemon.o move.o json11.o battle.o data.o team.o 
+
+# Default target all runs the compilation for main and test
+# by default it will create both files
+all: main test
+
+# Main program target
+main: $(OBJS)
+	$(CC) $(CFLAGS) -o main.bin main.cpp $(OBJS) gym.o
+
+# Test program target
+test: $(OBJS)
+	$(CC) $(CFLAGS) -o test.bin test.cpp $(OBJS) gym.o
+
+# Generic rule for building object files
+# using the list of files below, it will build 
+# them in order, the %.o looks for all the .o targets
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $<
+
+# Dependencies
+# XXX.o: XXX.h
+json11.o: json11.hpp
+pokemon.o: pokemon.h 
+move.o: move.h 
+battle.o: battle.h
+data.o: data.h
+team.o: team.h
+
+# Clean target
+clean:
+	rm -f main.bin test.bin pokemon.o move.o json11.o battle.o data.o team.o
+
+# .PHONY will cause the Makefile to the target
+# all and then the target clean by default
+.PHONY: all clean
