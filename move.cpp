@@ -1,1 +1,102 @@
+#include "move.h"
 
+/**
+     * Creates a Move object from JSON data. Parses the move's attributes and constructs a Move.
+     * @param jd JSON object containing move data.
+     * @return Pointer to the created Move object.
+     */
+Move* Move::create(const json jd) {
+    // Parse move attributes from JSON and create a new Move object.
+    // Hint: For implementation structure, see pokemonFactory, adapting the approach to return a Move* instead of a unique_ptr<Pokemon>.
+    //---
+    const string& name=jd["move_name"].string_value();
+    const string& type=jd["move_type"].string_value();
+    const string& category=jd["category"].string_value();
+    int power=jd["power"].int_value();
+    int accuracy=jd["accuracy"].int_value();
+    int pp=jd["pp"].int_value();
+    return new Move(name,type,category,power,accuracy,pp); // REPLACE ME, just a placeholder
+}
+/**
+ * Decreases the move's PP (Power Points) by one if possible, indicating the move has been used.
+ * If the PP reaches 0, the move cannot be used anymore.
+ * @return True if PP was successfully decremented, False if move has no PP left.
+ */
+bool Move::usePP() {
+    // Implement PP decrement logic
+    //---
+    if(Move::pp>0){
+    Move::pp--;
+    return true;
+    }
+    else {
+    return false;
+    }
+}
+
+// Implement getter methods to provide read-only access to move attributes
+/**
+ * Returns the move's type.
+ * @return Move type as a string.
+ */
+string Move::getType() const {
+    // Return the move's type
+    //---
+    string type=Move::type;
+    return type;
+}
+
+/**
+ * Returns the move's name.
+ * @return Move name as a string.
+ */
+string Move::getName() const {
+    // Return the move's name
+    //---
+    string name=Move::name;
+    return name;
+}
+
+/**
+ * Returns the move's category (e.g., "Physical" or "Special").
+ * @return Move category as a string.
+ */
+string Move::getCategory() const {
+    // Return the move's category
+    //---
+    string category=Move::category;
+    return category;
+}
+
+/**
+ * Returns the move's power, determining the move's strength in battle.
+ * @return Move power as an integer.
+ */
+int Move::getPower() const {
+    // Return the move's power
+    //---
+    int power=Move::power;
+    return power;
+}
+
+/**
+ * Returns the move's accuracy, affecting the chance of the move hitting the target.
+ * @return Move accuracy as an integer.
+ */
+int Move::getAccuracy() const {
+    // Return the move's accuracy
+    //---
+    int accuracy=Move::accuracy;
+    return accuracy;
+}
+
+/**
+ * Returns the current PP of the move, indicating how many more times the move can be used.
+ * @return Move PP as an integer.
+ */
+int Move::getPP() const {
+    // Return the move's current PP
+    //---
+    int pp=Move::pp;
+    return pp;
+}
