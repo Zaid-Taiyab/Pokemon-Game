@@ -7,8 +7,7 @@
      */
 Move* Move::create(const json jd) {
     // Parse move attributes from JSON and create a new Move object.
-    // Hint: For implementation structure, see pokemonFactory, adapting the approach to return a Move* instead of a unique_ptr<Pokemon>.
-    //---
+    
     const string& name=jd["move_name"].string_value();
     const string& type=jd["move_type"].string_value();
     const string& category=jd["category"].string_value();
