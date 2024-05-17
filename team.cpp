@@ -192,8 +192,6 @@ bool Team::loadTeam(const string& filename, vector<unique_ptr<Pokemon>>& pokemon
 /**
  * Saves the team's composition to a JSON file. Each Pokémon's name and their moves are included.
  * @param filename The name of the file to write the team's composition to.
- *
- * @note Students are not required to modify this function.
  */
 void Team::writeTeam(const string& filename) const {
     vector<json> teamJson;
